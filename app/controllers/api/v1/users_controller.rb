@@ -29,7 +29,7 @@ class Api::V1::UsersController < ApplicationController
   # PUT /users/:id
   def update
     # your code godes here
-    @user = User.find(params[:id])
+    @user = User.add(params[:id])
     if user.update(user_params)
         render json: { message: 'User updated' }, status: 202
     else
