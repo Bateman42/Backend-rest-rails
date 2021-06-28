@@ -12,7 +12,7 @@ class Api::V1::FactsController < ApplicationController
     def show
       # your code goes here
       @fact = User.find(params[:id])
-      render json: @user.fact
+      render json: @fact
     end
   
     # POST /users/:user_id/facts
@@ -31,11 +31,11 @@ class Api::V1::FactsController < ApplicationController
     # PUT /users/:user_id/facts/:id
   def update
     # your code goes here
-    @user = User.find(params[:id])
     if @fact.update(fact_params)
         render json: { message: 'Fact updated' }, 
         status: 202
-      render json: { error:
+    else
+        render json: { error:
         "Unable to update user: #{@fact.errors.full_messages.to_sentence}"},
         status: 400
     end
@@ -44,7 +44,7 @@ class Api::V1::FactsController < ApplicationController
   # DELETE /users/:user_id/facts/:id
   def destroy
     # your code goes here
-    if @fact.destroy(fact_params)
+    if @fact.destroy
         render json: { message: 'Fact record successfully deleted.'}, 
         status: 200
     else 
